@@ -1,9 +1,6 @@
 name: My Jobs
 
-on:
-  push:
-    paths:
-      - 'docker-replicated/code/**' # Adjust the path accordingly
+on: [push]
 
 jobs:
   build:
@@ -13,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cd docker-replicated/code && npm install
+      - run: npm install
       - name: Build App
         run: npm run build
 
@@ -24,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cd docker-replicated/code &&  npm install
+      - run: npm install
       - name: Lint
         run: npm run lint
 
@@ -35,7 +32,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cd docker-replicated/code &&  npm install
+      - run: npm install
       - name: Unit tests
         run: npm run test
 
@@ -46,7 +43,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cd docker-replicated/code &&  npm install
+      - run: npm install
       - name: Coverage test
         run: npm run test:cov
 
@@ -57,7 +54,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cd docker-replicated/code && npm install
+      - run: npm install
       - name: E2E test
         run: npm run test:e2e
 
@@ -66,4 +63,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker image
-        run: cd docker-replicated/code && docker build -t my-app .
+        run: docker build -t my-app .
